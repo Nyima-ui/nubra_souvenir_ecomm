@@ -1,1 +1,57 @@
 @import "tailwindcss";
+@font-face {
+    font-family: 'Overused Grotesk Light';
+    src: url('/fonts/OverusedGrotesk-Light.ttf');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'Overused Grotesk Book';
+    src: url('/fonts/OverusedGrotesk-Book.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Overused Grotesk Roman';
+    src: url('/fonts/OverusedGrotesk-Roman.ttf');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Overused Grotesk Medium';
+    src: url('/fonts/OverusedGrotesk-Medium.ttf');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Overused Grotesk SemiBold';
+    src: url('/fonts/OverusedGrotesk-SemiBold.ttf');
+    font-weight: 600;
+}
+@font-face {
+    font-family: 'Overused Grotesk Bold';
+    src: url('/fonts/OverusedGrotesk-Bold.ttf');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Overused Grotesk ExtraBold';
+    src: url('/fonts/OverusedGrotesk-ExtraBold.ttf');
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'Overused Grotesk Black';
+    src: url('/fonts/OverusedGrotesk-Black.ttf');
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Century';
+    src: url('/fonts/century_normal.ttf');
+}
+@theme{
+    --font-grotesk-200 : 'Overused Grotesk Light', 'sans-serif'; 
+    --font-grotesk-300 : 'Overused Grotesk Book', 'sans-serif'; 
+    --font-grotesk-400 : 'Overused Grotesk Roman', 'sans-serif'; 
+    --font-grotesk-500 : 'Overused Grotesk Medium', 'sans-serif'; 
+    --font-grotesk-600 : 'Overused Grotesk Semibold', 'sans-serif'; 
+    --font-grotesk-700 : 'Overused Grotesk Bold', 'sans-serif'; 
+    --font-grotesk-800 : 'Overused Grotesk Extrabold', 'sans-serif'; 
+    --font-grotesk-900 : 'Overused Grotesk Black', 'sans-serif'; 
+    --font-century : 'Century', 'sans-serif'; 
+}
