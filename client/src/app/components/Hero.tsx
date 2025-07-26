@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <>
     {/* mobile hero section  */}
-      <section className="pt-4 pb-7.5 flex flex-col items-center gap-5 sm:hidden border">
+      <section className="pt-4 pb-7.5 flex flex-col items-center gap-5 sm:hidden">
         <Image
           src="/images/heroM-min.png"
           alt="Image of our shop."
@@ -26,7 +26,7 @@ const Hero = () => {
         </button>
       </section>
       {/* desktop hero section  */}
-      <section className="max-sm:hidden w-screen h-[90vh] bg-[url(/images/hero-min.png)] bg-no-repeat bg-cover bg-center flex items-center justify-center text-white border">
+      <section className="max-sm:hidden w-screen h-[90vh] bg-[url(/images/hero-min.png)] bg-no-repeat bg-cover bg-center flex items-center justify-center text-white">
           <DesktopHeader />
           <div className="max-w-[540px] flex flex-col items-center gap-[17.5px] relative -translate-y-5">
              <h1 className="font-century font-bold text-[47.78px] text-center leading-[1.15] tracking-[0.01em]">Want To Get Souvenirs for Your Relatives?</h1>

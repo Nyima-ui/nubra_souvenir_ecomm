@@ -6,6 +6,7 @@ import Image from "next/image";
 const Header = () => {
   const [isMenuOpened, setisMenuOpened] = useState(false);
   return (
+    // this is mobile header 
     <div className="fixed top-0 w-full">
       <nav className="flex justify-between items-center px-7.5 py-4 relative bg-neutral-bg sm:hidden">
         <Link href="/">

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const DesktopHeader = () => {
   return (
-    <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2">
+    <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2 z-10">
       <Link href="/">
         <Image
           src="/images/logo.svg"
