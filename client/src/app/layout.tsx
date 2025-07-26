@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from './components/Header.js'
+import Header from './components/Header'
 
 export const metadata: Metadata = {
   title: "Nubra Souvenir",
