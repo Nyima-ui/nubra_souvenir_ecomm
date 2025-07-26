@@ -54,4 +54,8 @@
     --font-grotesk-800 : 'Overused Grotesk Extrabold', 'sans-serif'; 
     --font-grotesk-900 : 'Overused Grotesk Black', 'sans-serif'; 
     --font-century : 'Century', 'sans-serif'; 
+
+    --color-primary : #AF3714; 
+    --color-neutral-bg : #FFF1E8; 
+    --color-white : #FFFFFF; 
 }

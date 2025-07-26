@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from './components/Header.js'
 
 export const metadata: Metadata = {
   title: "Nubra Souvenir",
@@ -16,6 +17,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <Header />
         {children}
       </body>
     </html>
