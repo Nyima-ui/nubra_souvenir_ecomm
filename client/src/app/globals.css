@@ -1,4 +1,8 @@
 @import "tailwindcss";
+html, 
+body{
+
+}
 @font-face {
     font-family: 'Overused Grotesk Light';
     src: url('/fonts/OverusedGrotesk-Light.ttf');
