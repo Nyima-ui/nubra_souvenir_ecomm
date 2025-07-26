@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const dummyData = [
   {
@@ -65,7 +67,14 @@ const ProductGrid = () => {
       {/* grid  */}
       <div className="px-3 font-grotesk-400 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-7.5 md:mt-15 gap-x-3 md:gap-x-5 gap-y-5 md:gap-y-11.5 max-w-[90vw] mx-auto">
         {dummyData.map((product, index) => (
-          <div key={index} className="bg-[#FFF6F1] shadow-xs cursor-pointer group overflow-hidden">
+          <motion.div
+            key={index}
+            initial={{opacity : 0, y : 30}}
+            whileInView={{opacity : 1, y : 0}}
+            transition={{duration : 0.5, delay : index * 0.1}}
+            viewport={{once : true, amount : 0.1}}
+            className="bg-[#FFF6F1] shadow-xs cursor-pointer group overflow-hidden"
+          >
             <Image
               src={product.image}
               alt={product.name}
@@ -100,10 +109,10 @@ const ProductGrid = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-      <button className="border py-2 px-6 block mx-auto mt-7.5 md:mt-11 font-grotesk-400">
+      <button className="border py-2 px-6 block mx-auto mt-7.5 md:mt-11 font-grotesk-400 cursor-pointer">
         View More
       </button>
     </section>
