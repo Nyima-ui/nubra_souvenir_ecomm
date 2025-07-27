@@ -1,17 +1,32 @@
-import React from "react";
+'use client';
 
-const Marquee = () => {
+import { motion } from 'framer-motion';
+
+const items = ['culture', 'souvenirs', 'Gifts', 'home decor', 'culture', 'souvenirs', 'Gifts', 'home decor',];
+
+function Marquee() {
   return (
-    <div className="w-full bg-primary text-white font-century font-bold text-[19.2px] 
-    py-7.5 tracking-[0.01em] mb-10">
-      <div className="flex uppercase w-full justify-between max-w-[1108px] mx-auto">
-        <p>Culture</p>
-        <p>Souvenir</p>
-        <p>Gifts</p>
-        <p>home decor</p>
-      </div>
+    <div className="w-full overflow-hidden bg-primary text-white font-century font-bold text-[19.2px] max-sm:text-base py-7.5 max-sm:py-5 tracking-[0.01em] uppercase">
+      <motion.div
+        className="flex gap-6"
+        animate={{ x: ['0%', '-100%'] }}
+        transition={{
+          duration: 15,
+          ease: 'linear',
+          repeat: Infinity,
+        }}
+      >
+        {/* Repeat items twice to ensure seamless loop */}
+        {[...items, ...items].map((text, i) => (
+          <p key={i} className="w-[250px] max-sm:w-[180px] text-center shrink-0 tracking-[0.1em]">
+            {text}
+          </p>
+        ))}
+      </motion.div>
     </div>
   );
-};
-
+}
+ 
 export default Marquee;
+
+
