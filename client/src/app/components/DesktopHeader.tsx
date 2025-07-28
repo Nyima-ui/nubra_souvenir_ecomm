@@ -17,21 +17,41 @@ const DesktopHeader = () => {
       {/* first list  */}
       <ul className="flex items-center gap-5 md:gap-10">
         <li>
-          <Link href="/">Home Decor</Link>
+          <Link
+            href="/"
+            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+          >
+            Home Decor
+          </Link>
         </li>
         <li>
-          <Link href="/">Souvenirs</Link>
+          <Link
+            href="/"
+            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+          >
+            Souvenirs
+          </Link>
         </li>
         <li>
-          <Link href="/">About Us</Link>
+          <Link
+            href="/"
+            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+          >
+            About Us
+          </Link>
         </li>
       </ul>
       {/* second list  */}
       <ul className="flex items-center gap-3 md:gap-6.5">
         <li>
-          <Link href="/">Log In</Link>
+          <Link
+            href="/"
+            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+          >
+            Log In
+          </Link>
         </li>
-        <li>
+        <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in">
           <Link href="/">
             <svg
               width="30"
@@ -50,7 +70,7 @@ const DesktopHeader = () => {
             </svg>
           </Link>
         </li>
-        <li>
+        <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in">
           <Link href="/">
             <svg
               width="28"

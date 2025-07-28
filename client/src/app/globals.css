@@ -66,61 +66,17 @@ body {
   --shadow-xs: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper {
-  width: 100%;
-  margin-inline: auto;
-  position: relative;
-  height: 100px;
-  margin-bottom: 30px;
-  overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0),
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0)
-  );
+.hide-scrollbar::-webkit-scrollbar{
+  display: none;
 }
-
-@keyframes scrollLeft {
-  to {
-    left: -200px;
+@layer components{
+  .footer_head{
+    @apply font-century text-[19.2px] tracking-[0.01em]
   }
-}
-
-.item {
-  width: 200px;
-  height: 100px;
-  background-color: red;
-  border-radius: 6px;
-  position: absolute;
-  left: max(calc(200px * 8), 100%);
-  animation-name: scrollLeft;
-  animation-duration: 30s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-.item-1 {
-  animation-delay: calc(30s / 8 * (8 - 1) * -1);
-}
-.item-2 {
-  animation-delay: calc(30s / 8 * (8 - 2) * -1);
-}
-.item-3 {
-  animation-delay: calc(30s / 8 * (8 - 3) * -1);
-}
-.item-4 {
-  animation-delay: calc(30s / 8 * (8 - 4) * -1);
-}
-.item-5 {
-  animation-delay: calc(30s / 8 * (8 - 5) * -1);
-}
-.item-6 {
-  animation-delay: calc(30s / 8 * (8 - 6) * -1);
-}
-.item-7 {
-  animation-delay: calc(30s / 8 * (8 - 7) * -1);
-}
-.item-8 {
-  animation-delay: calc(30s / 8 * (8 - 8) * -1);
+  .footer_line{
+    @apply my-3 bg-white border border-white/70 w-[80px] h-[1px]
+  }
+  .footer_link{
+    @apply font-grotesk-400 tracking-[0.01em] pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in
+  }
 }

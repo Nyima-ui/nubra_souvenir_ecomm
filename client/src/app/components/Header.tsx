@@ -7,7 +7,7 @@ const Header = () => {
   const [isMenuOpened, setisMenuOpened] = useState(false);
   return (
     // this is mobile header 
-    <div className="fixed top-0 w-full">
+    <div className="fixed top-0 w-full z-20">
       <nav className="flex justify-between items-center px-7.5 py-4 relative bg-neutral-bg sm:hidden">
         <Link href="/">
           <Image

@@ -57,22 +57,25 @@ const dummyData = [
 const ProductGrid = () => {
   return (
     <section className="pt-7.5 md:pt-15 pb-15">
-      <h2
+      <motion.h2
         className="font-century text-center text-[19.02px] tracking-[0.01em] 
       sm:text-[23.05px]"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{opacity : 1, y : 0, transition : {duration : 0.3, ease : "easeInOut"}}}
+       
       >
         Our Collection
-      </h2>
+      </motion.h2>
 
       {/* grid  */}
       <div className="px-3 font-grotesk-400 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-7.5 md:mt-15 gap-x-3 md:gap-x-5 gap-y-5 md:gap-y-11.5 max-w-[90vw] mx-auto">
         {dummyData.map((product, index) => (
           <motion.div
             key={index}
-            initial={{opacity : 0, y : 30}}
-            whileInView={{opacity : 1, y : 0}}
-            transition={{duration : 0.5, delay : index * 0.1}}
-            viewport={{once : true, amount : 0.1}}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="bg-[#FFF6F1] shadow-xs cursor-pointer group overflow-hidden"
           >
             <Image
@@ -80,7 +83,7 @@ const ProductGrid = () => {
               alt={product.name}
               height={330}
               width={330}
-              className="transition-transform duration-300 ease-in-out group-hover:scale-105 "
+              className="transition-transform duration-300 ease-in-out group-hover:scale-105"
             ></Image>
             <div className="flex items-center justify-between p-3.5">
               <div>
@@ -112,7 +115,10 @@ const ProductGrid = () => {
           </motion.div>
         ))}
       </div>
-      <button className="border py-2 px-6 block mx-auto mt-7.5 md:mt-11 font-grotesk-400 cursor-pointer">
+      <button
+        className="border py-2 px-6 block mx-auto mt-7.5 md:mt-11 font-grotesk-400 cursor-pointer
+       hover:bg-primary hover:text-white hover:border-transparent transition-all duration-100 ease-in"
+      >
         View More
       </button>
     </section>
