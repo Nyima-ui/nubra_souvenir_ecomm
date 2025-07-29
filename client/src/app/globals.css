@@ -3,6 +3,7 @@ html,
 body {
   overflow-x: hidden;
 }
+
 @font-face {
   font-family: "Overused Grotesk Light";
   src: url("/fonts/OverusedGrotesk-Light.ttf");
@@ -48,6 +49,14 @@ body {
   font-family: "Century";
   src: url("/fonts/century_normal.ttf");
 }
+
+body{
+  font-family: 'Overused Grotesk Roman', 'sans-serif';
+  letter-spacing: 0.01em;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: "Century", 'serif';
+}
 @theme {
   --font-grotesk-200: "Overused Grotesk Light", "sans-serif";
   --font-grotesk-300: "Overused Grotesk Book", "sans-serif";
@@ -79,4 +88,18 @@ body {
   .footer_link{
     @apply font-grotesk-400 tracking-[0.01em] pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in
   }
+  
+  .cart_product_title{
+    @apply font-grotesk-500 tracking-[0.02em] text-base text-black
+  }
+  .cart_product_price{
+    @apply font-grotesk-300 text-[#3F3F3F] tracking-[0.02em] text-base
+  }
+  .admin_sidebar_title{
+    @apply font-grotesk-400 text-[19.02px] tracking-[0.01em] text-black max-sm:text-base
+  }
+  .admin_heading{
+    @apply font-century text-[23.04px] tracking-[0.01em] text-black max-sm:text-[19.02px]
+  }
+
 }

@@ -87,9 +87,9 @@ const ProductGrid = () => {
             ></Image>
             <div className="flex items-center justify-between p-3.5">
               <div>
-                <h3 className="text-base font-grotesk-500 leading-5">
+                <p className="text-base font-grotesk-500 leading-5">
                   {product.name}
-                </h3>
+                </p>
                 <p className="font-grotesk-300 mt-0.5">₹{product.price}</p>
               </div>
               <div>
