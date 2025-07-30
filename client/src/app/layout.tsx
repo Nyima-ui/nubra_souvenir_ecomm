@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CartContext from "./context/CartContext";
 
 export const metadata: Metadata = {
   title: "Nubra Souvenir",
@@ -13,10 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        {children}
+      <body className={`antialiased`}>
+        <CartContext>{children}</CartContext>
       </body>
     </html>
   );

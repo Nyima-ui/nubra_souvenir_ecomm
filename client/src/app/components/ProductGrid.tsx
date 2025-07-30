@@ -2,67 +2,27 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const dummyData = [
-  {
-    name: "Meditation Bowl",
-    image: "/images/p1-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Leather Tote Bag",
-    image: "/images/p2-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Water Offering Vessel",
-    image: "/images/p3-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Silver Moon Perfume",
-    image: "/images/p4-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Chinese Style Porcelain Bowl",
-    image: "/images/p5-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Pashmina Scarf",
-    image: "/images/p6-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "8 Lucky Sign Keychain",
-    image: "/images/p7-min.png",
-    price: "2900",
-    category: "collection",
-  },
-  {
-    name: "Incense Burner",
-    image: "/images/p8-min.png",
-    price: "2900",
-    category: "collection",
-  },
-];
+import { useCart } from "../context/CartContext";
+import { CartProduct } from "../context/CartContext";
+import { productGridDummyData as dummyData } from "../lib/dummyData";
 
 const ProductGrid = () => {
+  const { addToCart, toggleCart } = useCart();
+  const handleAddtoCart = (product: CartProduct) => {
+    addToCart(product);
+    toggleCart();
+  };
   return (
     <section className="pt-7.5 md:pt-15 pb-15">
       <motion.h2
         className="font-century text-center text-[19.02px] tracking-[0.01em] 
       sm:text-[23.05px]"
         initial={{ opacity: 0, y: 20 }}
-        animate={{opacity : 1, y : 0, transition : {duration : 0.3, ease : "easeInOut"}}}
-       
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.3, ease: "easeInOut" },
+        }}
       >
         Our Collection
       </motion.h2>
@@ -93,7 +53,19 @@ const ProductGrid = () => {
                 <p className="font-grotesk-300 mt-0.5">₹{product.price}</p>
               </div>
               <div>
-                <button className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer">
+                <button
+                  className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
+                  onClick={() =>
+                    handleAddtoCart({
+                      productId: product.id,
+                      name: product.name,
+                      image: product.image,
+                      price: product.price,
+                      category: product.category,
+                      quantity: product.quantity,
+                    })
+                  }
+                >
                   <svg
                     width="28"
                     height="28"

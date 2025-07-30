@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import DesktopHeader from "./DesktopHeader";
 import { motion, Variants } from "framer-motion";
 
 const Hero = () => {
@@ -64,8 +63,8 @@ const Hero = () => {
         </motion.button>
       </section>
       {/* desktop hero section  */}
+
       <section className="max-sm:hidden w-screen h-[90vh] bg-[url(/images/hero-min.png)] bg-no-repeat bg-cover bg-center flex items-center justify-center text-white">
-        <DesktopHeader />
         <motion.div
           className="max-w-[540px] flex flex-col items-center gap-[17.5px] relative -translate-y-5"
           initial={{ opacity: 0, y: 30 }}

@@ -2,59 +2,83 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { CartProduct } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
+import { v4 as uuidv4 } from "uuid";
 
 const dummyData = [
   {
+    id: uuidv4(),
     name: "Bracelets",
     image: "/images/pf1-min.png",
     price: "2900",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Tote Bags",
     image: "/images/pf3-min.png",
     price: "290",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Prayer Flags",
     image: "/images/pf2-min.png",
     price: "290",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Wall Prayer Wheel",
     image: "/images/pf4-min.png",
     price: "900",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Bracelets",
     image: "/images/pf1-min.png",
     price: "2900",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Tote Bags",
     image: "/images/pf3-min.png",
     price: "290",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Prayer Flags",
     image: "/images/pf2-min.png",
     price: "290",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
   {
+    id: uuidv4(),
     name: "Wall Prayer Wheel",
     image: "/images/pf4-min.png",
     price: "900",
-    category: "favorite",
+    category: "favorite" as const,
+    quantity: 1,
   },
 ];
 
 const FavoriteGrid = () => {
+  const { addToCart, toggleCart } = useCart();
+  const handleAddtoCart = (product: CartProduct) => {
+    addToCart(product);
+    toggleCart();
+  };
   const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = (direction: "left" | "right") => {
@@ -105,7 +129,19 @@ const FavoriteGrid = () => {
                 <p className="font-grotesk-300 mt-0.5">₹{product.price}</p>
               </div>
               <div>
-                <button className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer">
+                <button
+                  className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
+                  onClick={() =>
+                    handleAddtoCart({
+                      productId: product.id,
+                      name: product.name,
+                      image: product.image,
+                      price: product.price,
+                      category: product.category,
+                      quantity: product.quantity,
+                    })
+                  }
+                >
                   <svg
                     width="28"
                     height="28"

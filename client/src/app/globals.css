@@ -57,6 +57,10 @@ body{
 h1, h2, h3, h4, h5, h6{
   font-family: "Century", 'serif';
 }
+.styled-scrollbar {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
 @theme {
   --font-grotesk-200: "Overused Grotesk Light", "sans-serif";
   --font-grotesk-300: "Overused Grotesk Book", "sans-serif";

@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Cart from "./Cart";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const [isMenuOpened, setisMenuOpened] = useState(false);
-  const [isCartOpened, setisCartOpened] = useState(false);
+  const { isCartOpened, toggleCart } = useCart();
+
   return (
     // this is mobile header
     <div className="fixed top-0 w-full z-20">
@@ -26,7 +28,7 @@ const Header = () => {
             viewBox="0 0 37 37"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            onClick={() => setisCartOpened((prev) => !prev)}
+            onClick={toggleCart}
             className="cart_button"
           >
             <path
@@ -37,12 +39,7 @@ const Header = () => {
               strokeLinejoin="round"
             />
           </svg>
-          {isCartOpened && (
-            <Cart
-              isCartOpened={isCartOpened}
-              setisCartOpened={setisCartOpened}
-            />
-          )}
+          {/* {isCartOpened && <Cart />} */}
           <svg
             width="37"
             height="37"
