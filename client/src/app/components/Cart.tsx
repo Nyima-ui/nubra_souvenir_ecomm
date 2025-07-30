@@ -3,7 +3,7 @@ import CartProducts from "./CartProducts";
 import { useCart } from "../context/CartContext";
 
 const Cart = () => {
-  const { isCartOpened, toggleCart } = useCart();
+  const { isCartOpened, toggleCart, cartItems, findTotal } = useCart();
   return (
     <motion.section
       className={`fixed top-17 z-40 ${
@@ -36,6 +36,9 @@ const Cart = () => {
       <div className="mt-7.5 space-y-7.5 h-[70vh] overflow-y-scroll styled-scrollbar">
         <CartProducts />
       </div>
+      {cartItems.length > 0 && (
+        <button className="bg-primary text-white w-full py-2.5 cursor-pointer">{`Checkout - ₹${findTotal()}`}</button>
+      )}
     </motion.section>
   );
 };

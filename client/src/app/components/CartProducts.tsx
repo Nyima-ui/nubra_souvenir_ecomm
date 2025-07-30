@@ -4,7 +4,7 @@ import { useCart } from "../context/CartContext";
 import { CartProduct } from "../context/CartContext";
 
 const CartProducts = () => {
-  const { cartItems, increaseQuantity } = useCart();
+  const { cartItems, increaseQuantity, decreaseQuantity } = useCart();
   return (
     <>
       {cartItems.length === 0 && (
@@ -36,7 +36,12 @@ const CartProducts = () => {
                 </div>
               </div>
               <div className="quantity_div lower flex items-center gap-0.5">
-                <button className="cursor-pointer py-0.5 px-2">-</button>
+                <button
+                  className="cursor-pointer py-0.5 px-2"
+                  onClick={() => decreaseQuantity(product.productId)}
+                >
+                  -
+                </button>
                 <p>{product.quantity}</p>
                 <button
                   className="cursor-pointer py-0.5 px-2"

@@ -2,16 +2,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Cart from "./Cart";
 import { useCart } from "../context/CartContext";
 
 const Header = () => {
   const [isMenuOpened, setisMenuOpened] = useState(false);
-  const { isCartOpened, toggleCart } = useCart();
+  const { toggleCart } = useCart();
 
   return (
     // this is mobile header
-    <div className="fixed top-0 w-full z-20">
+    <div className="fixed top-0 w-full z-20 border">
       <nav className="flex justify-between items-center px-7.5 py-4 relative bg-neutral-bg sm:hidden">
         <Link href="/">
           <Image

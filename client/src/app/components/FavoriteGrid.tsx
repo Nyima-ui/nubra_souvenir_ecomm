@@ -4,74 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CartProduct } from "../context/CartContext";
 import { useCart } from "../context/CartContext";
-import { v4 as uuidv4 } from "uuid";
-
-const dummyData = [
-  {
-    id: uuidv4(),
-    name: "Bracelets",
-    image: "/images/pf1-min.png",
-    price: "2900",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Tote Bags",
-    image: "/images/pf3-min.png",
-    price: "290",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Prayer Flags",
-    image: "/images/pf2-min.png",
-    price: "290",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Wall Prayer Wheel",
-    image: "/images/pf4-min.png",
-    price: "900",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Bracelets",
-    image: "/images/pf1-min.png",
-    price: "2900",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Tote Bags",
-    image: "/images/pf3-min.png",
-    price: "290",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Prayer Flags",
-    image: "/images/pf2-min.png",
-    price: "290",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-  {
-    id: uuidv4(),
-    name: "Wall Prayer Wheel",
-    image: "/images/pf4-min.png",
-    price: "900",
-    category: "favorite" as const,
-    quantity: 1,
-  },
-];
+import { favoriteGridDummyData as dummyData } from "../lib/dummyData";
 
 const FavoriteGrid = () => {
   const { addToCart, toggleCart } = useCart();

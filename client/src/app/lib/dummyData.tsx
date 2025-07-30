@@ -67,4 +67,69 @@ export const productGridDummyData = [
   },
 ];
 
-export const favoriteGridDummyData = [];
+export const favoriteGridDummyData = [
+  {
+    id: uuidv4(),
+    name: "Bracelets",
+    image: "/images/pf1-min.png",
+    price: "2900",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Tote Bags",
+    image: "/images/pf3-min.png",
+    price: "290",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Prayer Flags",
+    image: "/images/pf2-min.png",
+    price: "290",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Wall Prayer Wheel",
+    image: "/images/pf4-min.png",
+    price: "900",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Bracelets",
+    image: "/images/pf1-min.png",
+    price: "2900",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Tote Bags",
+    image: "/images/pf3-min.png",
+    price: "290",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Prayer Flags",
+    image: "/images/pf2-min.png",
+    price: "290",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+  {
+    id: uuidv4(),
+    name: "Wall Prayer Wheel",
+    image: "/images/pf4-min.png",
+    price: "900",
+    category: "favorite" as const,
+    quantity: 1,
+  },
+];

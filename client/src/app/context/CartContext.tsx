@@ -22,6 +22,8 @@ export type CartContextType = {
   isCartOpened: boolean;
   toggleCart: () => void;
   increaseQuantity: (productId: string) => void;
+  decreaseQuantity: (productId: string) => void;
+  findTotal: () => number;
 };
 
 export type CartProdviderProps = {
@@ -53,6 +55,30 @@ const CartContext = ({ children }: CartProdviderProps) => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
+  const decreaseQuantity = (productId: string) => {
+    const updatedCart = cartItems
+      .map((product) => {
+        if (product.productId === productId) {
+          if (product.quantity > 1) {
+            return { ...product, quantity: product.quantity - 1 };
+          } else {
+            return null;
+          }
+        }
+        return product;
+      })
+      .filter((product): product is CartProduct => product !== null);
+
+    setcartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+  };
+
+  const findTotal = () => {
+    return cartItems.reduce((total, product) => {
+      return total + parseInt(product.price) * product.quantity;
+    }, 0);
+  };
+
   const addToCart = (product: CartProduct) => {
     const existingProduct = cartItems.find(
       (item) => item.productId === product.productId
@@ -81,6 +107,8 @@ const CartContext = ({ children }: CartProdviderProps) => {
         isCartOpened,
         toggleCart,
         increaseQuantity,
+        decreaseQuantity,
+        findTotal,
       }}
     >
       {children}
