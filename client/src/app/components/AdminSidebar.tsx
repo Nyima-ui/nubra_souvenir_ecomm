@@ -6,15 +6,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useAdminContext } from "../context/AdminContext";
 
-
-
 const AdminSidebar = () => {
-  const pathName = usePathname(); 
-  const {isSidebarOpen, setisSidebarOpen} = useAdminContext(); 
+  const pathName = usePathname();
+  const { isSidebarOpen, setisSidebarOpen } = useAdminContext();
   return (
-    <section className="h-screen fixed top-17 z-10 bg-neutral-bg pt-5 w-[283px] border-r border-black/30"
-    style={{left : isSidebarOpen ? "0px" : "-283px"}}>
-      <button className="block ml-7.5" onClick={() => setisSidebarOpen(false)}>
+    <section
+      className={`h-screen fixed top-17 sm:top-20 z-10 bg-neutral-bg pt-5 w-[283px] border-r border-black/30 transition-all duration-200 
+        ease-linear ${isSidebarOpen ? "left-0" : "-left-[283px]"} sm:left-0 sm:h-[90vh]`}
+    >
+      <button className="block ml-7.5 sm:hidden" onClick={() => setisSidebarOpen(false)}>
         <Cross />
       </button>
       <Link

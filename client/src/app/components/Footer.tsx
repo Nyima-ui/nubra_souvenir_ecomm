@@ -95,7 +95,7 @@ const Footer = () => {
       </div>
 
       {/* big footer logo  */}
-      <div className="absolute bottom-0 left-0 w-full">
+      <div className="absolute bottom-1 left-0 w-full">
         <Image
           src="/images/Nubra_Souvenir.svg"
           alt="Shop Logo"

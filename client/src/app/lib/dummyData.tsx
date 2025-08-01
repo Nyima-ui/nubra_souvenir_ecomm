@@ -133,3 +133,34 @@ export const favoriteGridDummyData = [
     quantity: 1,
   },
 ];
+
+export const adminProductList = [
+  {
+    productId : uuidv4(),
+    image : '/images/p1-min.png', 
+    name : 'Meditation Bowl', 
+    category : 'collection', 
+    price : 2900,
+  },
+  {
+    productId : uuidv4(),
+    image : '/images/p2-min.png', 
+    name : 'Leather Tote Bag', 
+    category : 'collection', 
+    price : 290,
+  },
+  {
+    productId : uuidv4(),
+    image : '/images/p3-min.png', 
+    name : 'Water offering vesel', 
+    category : 'collection', 
+    price : 3900,
+  },
+  {
+    productId : uuidv4(),
+    image : '/images/p4-min.png', 
+    name : 'Silver Moon perfume', 
+    category : 'collection', 
+    price : 900,
+  },
+]
