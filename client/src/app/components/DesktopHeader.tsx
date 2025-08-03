@@ -2,9 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
+import { usePathname } from "next/navigation";
 
 const DesktopHeader = () => {
   const { toggleCart } = useCart();
+  const path = usePathname(); 
   return (
     <>
       <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2 z-10">
@@ -56,6 +58,7 @@ const DesktopHeader = () => {
           </li>
           <li
             className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+            style={{display : path === '/checkout' ? 'none' : 'block'}}
             onClick={toggleCart}
           >
             <svg
