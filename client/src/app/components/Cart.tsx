@@ -9,10 +9,10 @@ const Cart = () => {
   const path = usePathname(); 
   return (
     <motion.section
-      className={`${path === "/checkout" ? "" : "fixed top-17 z-40"} ${
+      className={`${path === "/checkout" ? "relative top-17" : "fixed top-17 z-40"} ${
         isCartOpened ? "right-0" : "-right-full"
       } bg-neutral-bg w-full sm:w-[70%] md:w-[60%] lg:w-[47%] h-[95vh] px-5
-    pt-7.5 transition-all duration-200 ease-linear shadow-lg max-sm:border-t`}
+    pt-7.5 transition-all duration-200 ease-linear max-sm:border-t`}
     >
       <nav className="flex justify-between items-center">
         <h2 className="font-century text-[19.05px] tracking-[0.01em] text-black">

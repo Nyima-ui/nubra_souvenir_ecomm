@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import StretchButton from "../components/StretchButton";
 import DesktopHeader from "../components/DesktopHeader";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 const Page = () => {
   const [pageState, setpageState] = useState("signup");
@@ -47,6 +48,15 @@ const Page = () => {
               state={password}
               setterFunc={setpassword}
             />
+            <button
+              className="w-full border py-2.5 mt-3"
+              onClick={(e) => {
+                e.preventDefault();
+                signIn("google");
+              }}
+            >
+              <span className="capitalize">{pageState}</span> with Google
+            </button>
             <StretchButton
               buttonText={pageState === "signup" ? "Create Account" : "Log In"}
             />
@@ -61,13 +71,13 @@ const Page = () => {
           </p>
         </div>
         <div className="max-md:hidden min-w-[50%] border mt-10 h-full overflow-hidden">
-             <Image
-              src="/images/buddha.jpg"
-              alt="Picture of Buddha for design purpose"
-              height={620}
-              width={508} 
-              className="h-full w-full object-cover"
-             />
+          <Image
+            src="/images/buddha.jpg"
+            alt="Picture of Buddha for design purpose"
+            height={620}
+            width={508}
+            className="h-full w-full object-cover"
+          />
         </div>
       </section>
     </>

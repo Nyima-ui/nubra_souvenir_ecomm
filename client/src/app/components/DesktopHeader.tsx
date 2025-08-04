@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
-const DesktopHeader = () => {
+const DesktopHeader =  () => {
   const { toggleCart } = useCart();
   const path = usePathname(); 
   return (
@@ -50,7 +51,7 @@ const DesktopHeader = () => {
         <ul className="flex items-center gap-3 md:gap-6.5">
           <li>
             <Link
-              href="/"
+              href="/signup"
               className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
             >
               Log In
@@ -77,7 +78,7 @@ const DesktopHeader = () => {
               />
             </svg>
           </li>
-          <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in">
+          <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in" onClick={() => signOut()}>
             <Link href="/">
               <svg
                 width="28"

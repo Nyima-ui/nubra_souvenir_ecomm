@@ -14,12 +14,12 @@ const Page = () => {
   const [pinCode, setpinCode] = useState("");
 
   return (
-    <section className="w-full bg-neutral-bg ">
+    <section className="w-full bg-neutral-bg max-sm:pb-10 h-screen max-lg:h-auto overflow-hidden">
       <Header />
       <DesktopHeader />
-      <div className="flex flex-row-reverse">
-        <Cart />
-        <main className="sm:py-30 max-w-[450px] overflow-hidden ml-5 md:ml-15">
+      <div className="flex flex-row-reverse max-lg:flex-col justify-between w-full">
+       <Cart />
+        <main className="sm:py-30 max-w-[450px] overflow-hidden mx-20 max-md:mt-20">
           <h1 className="text-[19.02px] md:text-[23.03px]">Checkout</h1>
           <form>
             <Input

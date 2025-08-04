@@ -62,7 +62,9 @@ const FavoriteGrid = () => {
                 <p className="font-grotesk-300 mt-0.5">₹{product.price}</p>
               </div>
               <div>
+                <span className="sr-only">Add to cart</span>
                 <button
+                aria-label="Add to cart"
                   className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
                   onClick={() =>
                     handleAddtoCart({

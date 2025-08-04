@@ -53,8 +53,10 @@ const ProductGrid = () => {
                 <p className="font-grotesk-300 mt-0.5">₹{product.price}</p>
               </div>
               <div>
+                <span className="sr-only">Add to Cart</span>
                 <button
-                  className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
+                  aria-label="Add to Cart"
+                  className="md:opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
                   onClick={() =>
                     handleAddtoCart({
                       productId: product.id,

@@ -15,7 +15,7 @@ const AdminContexts = createContext<AdminContextsType | undefined>(undefined);
 
 const AdminContext = ({ children }: AdminContextProviderType) => {
   const [isSidebarOpen, setisSidebarOpen] = useState(true);
-  const [isModalOpen, setisModalOpen] = useState(true);
+  const [isModalOpen, setisModalOpen] = useState(false);
 
   return (
     <AdminContexts.Provider
