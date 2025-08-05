@@ -4,12 +4,13 @@ type InputProps = {
   placeholder: string;
   state: string;
   setterFunc: (value: string) => void;
+  type?: string;
 };
 
-const Input = ({ placeholder, state, setterFunc }: InputProps) => {
+const Input = ({ placeholder, state, setterFunc, type = "text" }: InputProps) => {
   return (
     <input
-      type="text"
+      type={type}
       id={placeholder}
       value={state}
       onChange={(e) => setterFunc(e.target.value)}
