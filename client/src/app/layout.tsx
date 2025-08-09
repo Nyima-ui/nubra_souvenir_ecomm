@@ -3,6 +3,7 @@ import "./globals.css";
 import CartContext from "./context/CartContext";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Nubra Souvenir",
@@ -15,12 +16,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`antialiased`}>
-        <Toaster position="top-center" reverseOrder={false} />
-        <CartContext>{children}</CartContext>
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`antialiased`}>
+          <Toaster position="top-center" reverseOrder={false} />
+          <CartContext>{children}</CartContext>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

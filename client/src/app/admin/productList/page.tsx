@@ -88,7 +88,7 @@ const Page = () => {
                     height={80}
                     width={80}
                   />
-                  <span className="text-[14px] font-semibold">
+                  <span className="text-[14px] font-medium">
                     {product.name}
                   </span>
                 </div>

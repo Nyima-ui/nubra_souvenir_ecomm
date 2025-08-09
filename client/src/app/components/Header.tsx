@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
+import { SignedOut, SignInButton } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   const [isMenuOpened, setisMenuOpened] = useState(false);
@@ -87,7 +89,14 @@ const Header = () => {
               <Link href="/">About Us</Link>
             </li>
             <li>
-              <Link href="/">Log In</Link>
+              <SignedOut>
+                  <SignInButton>
+                      <button>Log in</button>
+                  </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                 <UserButton />
+              </SignedIn>
             </li>
 
             <div className="pt-5 font-grotesk-400 tracking-[0.02em]">

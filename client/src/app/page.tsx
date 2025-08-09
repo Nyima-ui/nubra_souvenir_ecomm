@@ -25,6 +25,7 @@ export default function Home() {
       <Location />
       <Gallery />
       <Owner />
+      <Footer />
     </div>
   );
 }

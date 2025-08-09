@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "../../../auth";
 
-const Footer = async () => {
-  const session = await auth(); 
+const Footer =  () => {
   return (
     <footer className="text-white bg-primary pt-9 px-7.5 pb-30 md:pb-40 lg:pb-60 relative">
       {/* grid container  */}
@@ -95,7 +93,6 @@ const Footer = async () => {
           <address className="footer_link max-w-[158px]">
             Leh Ladakh - 19001
           </address>
-          {session && session?.user ? <p>{session?.user?.name} visit again lo</p> : ""}
         </div>
       </div>
 

@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/nextjs";
 
-const DesktopHeader =  () => {
+const DesktopHeader = () => {
   const { toggleCart } = useCart();
-  const path = usePathname(); 
+  const path = usePathname();
   return (
     <>
       <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2 z-10">
@@ -49,17 +49,21 @@ const DesktopHeader =  () => {
         </ul>
         {/* second list  */}
         <ul className="flex items-center gap-3 md:gap-6.5">
-          <li>
-            <Link
-              href="/signup"
-              className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
-            >
-              Log In
-            </Link>
+          <li className="cursor-pointer">
+            <SignedOut>
+              <SignInButton>
+                <button className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in cursor-pointer">
+                  Log in
+                </button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+               <UserButton />
+            </SignedIn>
           </li>
           <li
-            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
-            style={{display : path === '/checkout' ? 'none' : 'block'}}
+            className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in cursor-pointer"
+            style={{ display: path === "/checkout" ? "none" : "block" }}
             onClick={toggleCart}
           >
             <svg
@@ -78,7 +82,7 @@ const DesktopHeader =  () => {
               />
             </svg>
           </li>
-          <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in" onClick={() => signOut()}>
+          <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in">
             <Link href="/">
               <svg
                 width="28"
