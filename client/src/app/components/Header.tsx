@@ -89,13 +89,16 @@ const Header = () => {
               <Link href="/">About Us</Link>
             </li>
             <li>
+              <Link href="/admin/addProduct">Admin</Link>
+            </li>
+            <li>
               <SignedOut>
-                  <SignInButton>
-                      <button>Log in</button>
-                  </SignInButton>
+                <SignInButton>
+                  <button>Log in</button>
+                </SignInButton>
               </SignedOut>
               <SignedIn>
-                 <UserButton />
+                <UserButton />
               </SignedIn>
             </li>
 

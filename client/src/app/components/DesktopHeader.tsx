@@ -46,6 +46,14 @@ const DesktopHeader = () => {
               About Us
             </Link>
           </li>
+          <li>
+            <Link
+              href="/admin/addProduct"
+              className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
+            >
+              Admin
+            </Link>
+          </li>
         </ul>
         {/* second list  */}
         <ul className="flex items-center gap-3 md:gap-6.5">
