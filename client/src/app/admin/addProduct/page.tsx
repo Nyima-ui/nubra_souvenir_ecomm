@@ -2,7 +2,10 @@
 import { useAdminContext } from "@/app/context/AdminContext";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
+import toast from "react-hot-toast";
+
+
 
 const Page = () => {
   const { setisSidebarOpen } = useAdminContext();
@@ -18,9 +21,6 @@ const Page = () => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(selectedFile);
-  // }, [selectedFile]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -29,8 +29,12 @@ const Page = () => {
       return;
     }
     const formData = new FormData(e.currentTarget);
+
+    for(const [key, value] of formData.entries()){
+      console.log(key, value); 
+    }
     try {
-      const res = await fetch("http://localhost:3000/api/admin/addProduct", {
+      const res = await fetch("http://localhost:5000/api/admin/addProduct", {
         method: "POST",
         body: formData,
       });
