@@ -2,16 +2,17 @@
 import { useAdminContext } from "@/app/context/AdminContext";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
-import {  useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
-
-
+import Loader from "@/app/components/Loader";
 
 const Page = () => {
   const { setisSidebarOpen } = useAdminContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setselectedFile] = useState<File | null>(null);
+  const [loading, setloading] = useState<boolean>(false);
 
+  //handling change in image
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -21,18 +22,18 @@ const Page = () => {
     }
   };
 
+  //handling form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!selectedFile) {
-      alert("Please upload an image of prouduct");
+      toast.error("Please upload an image of the product.");
       return;
     }
-    const formData = new FormData(e.currentTarget);
 
-    for(const [key, value] of formData.entries()){
-      console.log(key, value); 
-    }
+    setloading(true);
+
+    const formData = new FormData(e.currentTarget);
     try {
       const res = await fetch("http://localhost:5000/api/admin/addProduct", {
         method: "POST",
@@ -40,16 +41,18 @@ const Page = () => {
       });
 
       if (res.ok) {
-        //TO DO: replace the alert with react hot toast
-        alert("Product added successfully!");
+        toast.success("Product added successfully");
         setPreviewImage(null);
         setselectedFile(null);
+        e.currentTarget.reset();
       } else {
-        alert("Error adding product");
+        toast.error("Error adding product.");
       }
     } catch (error) {
       console.error("Error", error);
-      alert("Something went wrong");
+      toast.error("Something went wrong.");
+    } finally {
+      setloading(false);
     }
   };
 
@@ -128,6 +131,9 @@ const Page = () => {
             name="product_price"
           />
 
+          {/* laoder  */}
+          {loading && <Loader />}
+
           <label htmlFor="category" className="mt-7.5">
             Category
           </label>
@@ -144,8 +150,9 @@ const Page = () => {
           <button
             className="bg-primary text-white max-w-[126px] border-none py-2.5 mt-7.5 cursor-pointer"
             type="submit"
+            disabled={loading}
           >
-            Add Product
+            {loading ? "Adding..." : "Add Product"}
           </button>
         </form>
       </div>
