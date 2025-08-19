@@ -5,13 +5,18 @@ import { useRouter } from "next/navigation";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
 import React from "react";
+import { Product } from "@/app/context/ProductContext";
 
 const Page = () => {
   const { setisSidebarOpen, isModalOpen, setisModalOpen } = useAdminContext();
-  const { products } = useProductsContext();
+  const { products, setselectedProduct } = useProductsContext();
   const router = useRouter();
 
   const handleDeleteProduct = () => {};
+  const handleUpdate = (product: Product): void => {
+    setselectedProduct(product);
+    router.push("/admin/updateProduct");
+  };
   return (
     <>
       {isModalOpen && (
@@ -105,7 +110,7 @@ const Page = () => {
                 <div className="col-span-1 border flex flex-col items-center justify-center gap-2 border-black/20">
                   <button
                     className="text-[14px] text-white bg-primary py-[3px] w-[60px] cursor-pointer"
-                    onClick={() => router.push("/admin/updateProduct")}
+                    onClick={() => handleUpdate(product)}
                   >
                     Update
                   </button>

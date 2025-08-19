@@ -8,7 +8,7 @@ import {
 } from "react";
 import toast from "react-hot-toast";
 
-type Product = {
+export type Product = {
   id: string;
   name: string;
   image: string;

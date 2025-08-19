@@ -1,13 +1,20 @@
 import Image from "next/image";
 import Loader from "./Loader";
+import { useProductsContext } from "../context/ProductContext";
+import React, { useEffect } from "react";
+
+type HandleFunc =
+  | ((e: React.FormEvent<HTMLFormElement>) => Promise<void>)
+  | ((id: string, e: React.FormEvent<HTMLFormElement>) => Promise<void>);
 
 type FormParamTypes = {
-  handleFunc: (e : React.FormEvent<HTMLFormElement>) => Promise<void>;
+  handleFunc: HandleFunc;
   formRef: React.RefObject<HTMLFormElement | null>;
   previewImage: string | null;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   loading: boolean;
   buttonText: string;
+  setudpatedImage?: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const ProductForm = ({
@@ -17,11 +24,35 @@ const ProductForm = ({
   handleImageChange,
   loading,
   buttonText,
+  setudpatedImage,
 }: FormParamTypes) => {
+  const { selectedProduct } = useProductsContext();
+
+  useEffect(() => {
+    if (selectedProduct && setudpatedImage) {
+      setudpatedImage(selectedProduct.image);
+    }
+  }, [selectedProduct, setudpatedImage]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (selectedProduct?.id) {
+      (
+        handleFunc as (
+          id: string,
+          e: React.FormEvent<HTMLFormElement>
+        ) => Promise<void>
+      )(selectedProduct.id, e);
+    } else {
+      (handleFunc as (e: React.FormEvent<HTMLFormElement>) => Promise<void>)(e);
+    }
+  };
+
   return (
     <form
       className="flex flex-col mt-5 max-w-[500px]"
-      onSubmit={handleFunc}
+      onSubmit={handleSubmit}
       ref={formRef}
     >
       {/* upload image  */}
@@ -72,6 +103,7 @@ const ProductForm = ({
         name="product_name"
         className="outline-none border-b border-black/70 mt-1 max-w-[350px]"
         required
+        value={selectedProduct?.name ? selectedProduct.name : ""}
       />
       {/* product price  */}
       <label htmlFor="product_price" className="mt-7.5">
@@ -83,6 +115,7 @@ const ProductForm = ({
         className="outline-none border-b border-black/70 mt-1 max-w-[350px]"
         required
         name="product_price"
+        value={selectedProduct?.price ? selectedProduct.price : ""}
       />
 
       {/* loader  */}
@@ -96,6 +129,7 @@ const ProductForm = ({
         name="category"
         className="border mt-3 outline-none max-w-[100px]"
         required
+        value={selectedProduct?.category ?? ""}
       >
         <option value="collection">Collection</option>
         <option value="favorite">Favorite</option>
