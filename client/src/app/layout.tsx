@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CartContext from "./context/CartContext";
-import Footer from "./components/Footer";
+import ProductContext from "./context/ProductContext";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -20,7 +20,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={`antialiased`}>
           <Toaster position="top-center" reverseOrder={false} />
-          <CartContext>{children}</CartContext>
+          <ProductContext>
+            <CartContext>{children}</CartContext>
+          </ProductContext>
         </body>
       </html>
     </ClerkProvider>

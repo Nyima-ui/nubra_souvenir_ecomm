@@ -1,11 +1,16 @@
 "use client";
-import Bars from "@/app/components/Bars";
 import { useAdminContext } from "@/app/context/AdminContext";
+import { useProductsContext } from "@/app/context/ProductContext";
+import { useRouter } from "next/navigation";
+import Bars from "@/app/components/Bars";
 import Image from "next/image";
-import { adminProductList } from "@/app/lib/dummyData";
+import React from "react";
 
 const Page = () => {
   const { setisSidebarOpen, isModalOpen, setisModalOpen } = useAdminContext();
+  const { products } = useProductsContext();
+  const router = useRouter();
+
   const handleDeleteProduct = () => {};
   return (
     <>
@@ -19,7 +24,8 @@ const Page = () => {
               height={101}
             />
             <p className="text-center leading-4 md:leading-5 mt-5 md:text-[19.02px]">
-              Are you sure you want to  <br />delete the product?
+              Are you sure you want to <br />
+              delete the product?
             </p>
             <div className="space-x-5 mt-8 md:mt-5">
               <button
@@ -75,18 +81,15 @@ const Page = () => {
           </div>
 
           {/* grid rows  */}
-          {adminProductList.map((product) => {
+          {products.map((product) => {
             return (
-              <>
-                <div
-                  key={product.productId}
-                  className="col-span-2 flex flex-col items-center gap-1 border border-black/20"
-                >
+              <React.Fragment key={product.id}>
+                <div className="col-span-2 flex flex-col items-center gap-1 border border-black/20">
                   <Image
                     src={product.image}
                     alt={product.name}
-                    height={80}
-                    width={80}
+                    height={70}
+                    width={70}
                   />
                   <span className="text-[14px] font-medium">
                     {product.name}
@@ -100,16 +103,20 @@ const Page = () => {
                   <p className="text-[14px]">₹{product.price}</p>
                 </div>
                 <div className="col-span-1 border flex flex-col items-center justify-center gap-2 border-black/20">
-                  <button className="text-[14px] text-white bg-primary py-[3px] w-[60px] cursor-pointer">
+                  <button
+                    className="text-[14px] text-white bg-primary py-[3px] w-[60px] cursor-pointer"
+                    onClick={() => router.push("/admin/updateProduct")}
+                  >
                     Update
                   </button>
-                  <button className="text-[14px] border w-[60px] py-[3px] cursor-pointer"
-                     onClick={()=> setisModalOpen(true)}
+                  <button
+                    className="text-[14px] border w-[60px] py-[3px] cursor-pointer"
+                    onClick={() => setisModalOpen(true)}
                   >
                     Delete
                   </button>
                 </div>
-              </>
+              </React.Fragment>
             );
           })}
         </main>

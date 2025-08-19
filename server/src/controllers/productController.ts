@@ -32,3 +32,35 @@ export const createProduct = async (req: Request, res: Response) => {
       .json({ success: false, error: "Something went wrong" });
   }
 };
+
+export const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const products = await prisma.product.findMany();
+
+    if (products.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No products found." });
+    }
+
+    return res.status(200).json({ success: true, products });
+  } catch (err) {
+    console.error("Error fetching products:", err);
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal server error" });
+  }
+};
+
+export const updateProduct = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log("product ID", id);
+    return res.status(200).json({ success: true, id });
+  } catch (error) {
+    console.error("Error updating a product:", error);
+    return res
+      .status(500)
+      .json({ success: false, error: "Internal server error" });
+  }
+};

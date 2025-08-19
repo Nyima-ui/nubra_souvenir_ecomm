@@ -1,16 +1,18 @@
 "use client";
 import { useAdminContext } from "@/app/context/AdminContext";
+import { useProductsContext } from "@/app/context/ProductContext";
+import { useState, useRef } from "react";
 import Bars from "@/app/components/Bars";
-import Image from "next/image";
-import { useState } from "react";
 import toast from "react-hot-toast";
-import Loader from "@/app/components/Loader";
+import ProductForm from "@/app/components/ProductForm";
 
 const Page = () => {
   const { setisSidebarOpen } = useAdminContext();
+  const { fetchProducts } = useProductsContext();
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setselectedFile] = useState<File | null>(null);
   const [loading, setloading] = useState<boolean>(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   //handling change in image
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +35,8 @@ const Page = () => {
 
     setloading(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget as HTMLFormElement;
+    const formData = new FormData(form);
     try {
       const res = await fetch("http://localhost:5000/api/admin/addProduct", {
         method: "POST",
@@ -44,7 +47,9 @@ const Page = () => {
         toast.success("Product added successfully");
         setPreviewImage(null);
         setselectedFile(null);
-        e.currentTarget.reset();
+        formRef.current?.reset();
+
+        await fetchProducts();
       } else {
         toast.error("Error adding product.");
       }
@@ -56,6 +61,7 @@ const Page = () => {
     }
   };
 
+  const buttonText = loading ? "Adding..." : "Add a Product";
   return (
     <section className="pt-17 h-screen bg-neutral-bg px-7.5 relative sm:left-66 md:left-70 sm:pt-27 ">
       <div className="container">
@@ -66,11 +72,12 @@ const Page = () => {
           <Bars />
         </button>
         <h3 className="text-[19.02px] mt-7.5">Add Product</h3>
-        <form
+        {/* <form
           className="flex flex-col mt-5 max-w-[500px]"
           onSubmit={handleSubmit}
+          ref={formRef}
         >
-          {/* upload image  */}
+          
           <label>Product Image</label>
           <label
             htmlFor="product_image"
@@ -107,7 +114,7 @@ const Page = () => {
             />
           </label>
 
-          {/* product name  */}
+     
 
           <label htmlFor="product_name" className="mt-7.5">
             Product Name
@@ -119,7 +126,7 @@ const Page = () => {
             className="outline-none border-b border-black/70 mt-1 max-w-[350px]"
             required
           />
-          {/* product price  */}
+         
           <label htmlFor="product_price" className="mt-7.5">
             Product Price
           </label>
@@ -131,7 +138,7 @@ const Page = () => {
             name="product_price"
           />
 
-          {/* laoder  */}
+   
           {loading && <Loader />}
 
           <label htmlFor="category" className="mt-7.5">
@@ -146,15 +153,23 @@ const Page = () => {
             <option value="collection">Collection</option>
             <option value="favorite">Favorite</option>
           </select>
-          {/* from submit button  */}
+         
           <button
             className="bg-primary text-white max-w-[126px] border-none py-2.5 mt-7.5 cursor-pointer"
             type="submit"
             disabled={loading}
           >
-            {loading ? "Adding..." : "Add Product"}
+            {buttonText}
           </button>
-        </form>
+        </form> */}
+        <ProductForm
+          handleFunc={handleSubmit}
+          formRef={formRef}
+          previewImage={previewImage}
+          handleImageChange={handleImageChange}
+          loading={loading}
+          buttonText={buttonText}
+        />
       </div>
     </section>
   );

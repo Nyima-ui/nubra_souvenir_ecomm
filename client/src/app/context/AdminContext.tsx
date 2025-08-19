@@ -9,6 +9,8 @@ type AdminContextsType = {
   setisSidebarOpen: (value: boolean) => void;
   isModalOpen: boolean;
   setisModalOpen: (value: boolean) => void;
+  isUpdatePage: boolean;
+  setisUpdatePage: (value: boolean) => void;
 };
 
 const AdminContexts = createContext<AdminContextsType | undefined>(undefined);
@@ -16,10 +18,18 @@ const AdminContexts = createContext<AdminContextsType | undefined>(undefined);
 const AdminContext = ({ children }: AdminContextProviderType) => {
   const [isSidebarOpen, setisSidebarOpen] = useState(true);
   const [isModalOpen, setisModalOpen] = useState(false);
+  const [isUpdatePage, setisUpdatePage] = useState(false);
 
   return (
     <AdminContexts.Provider
-      value={{ isSidebarOpen, setisSidebarOpen, isModalOpen, setisModalOpen }}
+      value={{
+        isSidebarOpen,
+        setisSidebarOpen,
+        isModalOpen,
+        setisModalOpen,
+        isUpdatePage,
+        setisUpdatePage,
+      }}
     >
       {children}
     </AdminContexts.Provider>
