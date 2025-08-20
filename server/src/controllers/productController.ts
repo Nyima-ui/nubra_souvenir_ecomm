@@ -55,8 +55,33 @@ export const getAllProducts = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    console.log("product ID", id);
-    return res.status(200).json({ success: true, id });
+    if (!id) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Product ID is missing" });
+    }
+    const { product_name, product_price, category, product_image } = req.body;
+
+    let imageUrl = product_image;
+
+    if (req.file) {
+      const uploadResult = await cloudinary.uploader.upload(req.file.path);
+      fs.unlinkSync(req.file.path);
+      imageUrl = uploadResult.secure_url;
+    }
+
+    const updatedProduct = await prisma.product.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: product_name,
+        image: imageUrl,
+        price: parseInt(product_price, 10),
+        category: category,
+      },
+    });
+    return res.status(200).json({ success: true, updatedProduct });
   } catch (error) {
     console.error("Error updating a product:", error);
     return res

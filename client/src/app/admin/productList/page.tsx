@@ -49,7 +49,7 @@ const Page = () => {
           </div>
         </div>
       )}
-      <section className="pt-17 h-screen bg-neutral-bg px-[15px] relative sm:left-66 md:left-70 sm:pt-27">
+      <section className="pt-17 h-auto bg-neutral-bg px-[15px] relative sm:left-66 md:left-70 sm:pt-27 pb-10">
         <button
           className="sm:hidden cursor-pointer mt-7.5"
           onClick={() => setisSidebarOpen(true)}

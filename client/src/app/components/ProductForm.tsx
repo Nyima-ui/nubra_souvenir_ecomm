@@ -3,12 +3,22 @@ import Loader from "./Loader";
 import { useProductsContext } from "../context/ProductContext";
 import React, { useEffect } from "react";
 
-type HandleFunc =
-  | ((e: React.FormEvent<HTMLFormElement>) => Promise<void>)
-  | ((id: string, e: React.FormEvent<HTMLFormElement>) => Promise<void>);
+export type FormValues = {
+  product_name: string;
+  product_price: string;
+  category: string;
+};
+
 
 type FormParamTypes = {
-  handleFunc: HandleFunc;
+  formValues: FormValues;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
+  handleFunc: (
+    e: React.FormEvent<HTMLFormElement>,
+    id?: string
+  ) => Promise<void>;
   formRef: React.RefObject<HTMLFormElement | null>;
   previewImage: string | null;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,6 +28,8 @@ type FormParamTypes = {
 };
 
 const ProductForm = ({
+  formValues,
+  onChange,
   handleFunc,
   formRef,
   previewImage,
@@ -28,6 +40,7 @@ const ProductForm = ({
 }: FormParamTypes) => {
   const { selectedProduct } = useProductsContext();
 
+  //this useEffect is just to preview the image of selected product
   useEffect(() => {
     if (selectedProduct && setudpatedImage) {
       setudpatedImage(selectedProduct.image);
@@ -37,16 +50,7 @@ const ProductForm = ({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (selectedProduct?.id) {
-      (
-        handleFunc as (
-          id: string,
-          e: React.FormEvent<HTMLFormElement>
-        ) => Promise<void>
-      )(selectedProduct.id, e);
-    } else {
-      (handleFunc as (e: React.FormEvent<HTMLFormElement>) => Promise<void>)(e);
-    }
+    handleFunc(e, selectedProduct?.id);
   };
 
   return (
@@ -103,7 +107,8 @@ const ProductForm = ({
         name="product_name"
         className="outline-none border-b border-black/70 mt-1 max-w-[350px]"
         required
-        value={selectedProduct?.name ? selectedProduct.name : ""}
+        value={formValues.product_name}
+        onChange={onChange}
       />
       {/* product price  */}
       <label htmlFor="product_price" className="mt-7.5">
@@ -115,7 +120,8 @@ const ProductForm = ({
         className="outline-none border-b border-black/70 mt-1 max-w-[350px]"
         required
         name="product_price"
-        value={selectedProduct?.price ? selectedProduct.price : ""}
+        value={formValues.product_price}
+        onChange={onChange}
       />
 
       {/* loader  */}
@@ -129,7 +135,8 @@ const ProductForm = ({
         name="category"
         className="border mt-3 outline-none max-w-[100px]"
         required
-        value={selectedProduct?.category ?? ""}
+        value={formValues.category}
+        onChange={onChange}
       >
         <option value="collection">Collection</option>
         <option value="favorite">Favorite</option>

@@ -2,6 +2,7 @@
 import { useAdminContext } from "@/app/context/AdminContext";
 import { useProductsContext } from "@/app/context/ProductContext";
 import { useState, useRef } from "react";
+import { FormValues } from "@/app/components/ProductForm";
 import Bars from "@/app/components/Bars";
 import toast from "react-hot-toast";
 import ProductForm from "@/app/components/ProductForm";
@@ -9,10 +10,25 @@ import ProductForm from "@/app/components/ProductForm";
 const Page = () => {
   const { setisSidebarOpen } = useAdminContext();
   const { fetchProducts } = useProductsContext();
+
+  const [formValues, setformValues] = useState<FormValues>({
+    product_name: "",
+    product_price: "",
+    category: "collection",
+  });
+
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [selectedFile, setselectedFile] = useState<File | null>(null);
   const [loading, setloading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  //handling change in text
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setformValues((prev) => ({ ...prev, [name]: value }));
+  };
 
   //handling change in image
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +51,12 @@ const Page = () => {
 
     setloading(true);
 
-    const form = e.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
+    const formData = new FormData();
+    formData.append("product_name", formValues.product_name);
+    formData.append("product_price", formValues.product_price);
+    formData.append("category", formValues.category);
+    formData.append("product_image", selectedFile);
+
     try {
       const res = await fetch("http://localhost:5000/api/admin/addProduct", {
         method: "POST",
@@ -45,10 +65,14 @@ const Page = () => {
 
       if (res.ok) {
         toast.success("Product added successfully");
+        setformValues({
+          product_name: "",
+          product_price: "",
+          category: "collection",
+        });
         setPreviewImage(null);
         setselectedFile(null);
         formRef.current?.reset();
-
         await fetchProducts();
       } else {
         toast.error("Error adding product.");
@@ -74,6 +98,8 @@ const Page = () => {
         <h3 className="text-[19.02px] mt-7.5">Add Product</h3>
 
         <ProductForm
+          formValues={formValues}
+          onChange={handleChange}
           handleFunc={handleSubmit}
           formRef={formRef}
           previewImage={previewImage}

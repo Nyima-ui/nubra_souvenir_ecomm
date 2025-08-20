@@ -1,8 +1,16 @@
-import express from 'express'; 
-import { getAllProducts, updateProduct } from '../controllers/productController';
+import express from "express";
+import {
+  getAllProducts,
+  updateProduct,
+} from "../controllers/productController";
+import upload from "../middlewares/upload";
 
-const productRouter = express.Router(); 
-productRouter.get("/getProducts", getAllProducts); 
-productRouter.put("/updateProduct/:id", updateProduct); 
+const productRouter = express.Router();
+productRouter.get("/getProducts", getAllProducts);
+productRouter.put(
+  "/updateProduct/:id",
+  upload.single("product_image"),
+  updateProduct
+);
 
-export default productRouter
+export default productRouter;

@@ -1,9 +1,10 @@
 "use client";
 import { useAdminContext } from "@/app/context/AdminContext";
 import { useProductsContext } from "@/app/context/ProductContext";
+import React, { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import ProductForm from "@/app/components/ProductForm";
 import Bars from "@/app/components/Bars";
-import React, { useState, useRef, useEffect } from "react";
 import toast from "react-hot-toast";
 
 const Page = () => {
@@ -13,14 +14,42 @@ const Page = () => {
   const [loading, setloading] = useState(false);
 
   const { setisSidebarOpen } = useAdminContext();
-  const { selectedProduct } = useProductsContext();
+  const { selectedProduct, setproducts } = useProductsContext();
+
+  const [formValues, setformValues] = useState({
+    product_name: selectedProduct?.name ?? "",
+    product_price: selectedProduct?.price.toString() ?? "",
+    category: selectedProduct?.category ?? "collection",
+  });
+
+  const router = useRouter(); 
+  //handle update of product values
+  const handleUpdateOfFields = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setformValues((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleUpdateProduct = async (
-    id: string,
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
+    id?: string
   ) => {
-    const form = e.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
+    e.preventDefault();
+    if (!id) return;
+
+    setloading(true);
+
+    const formData = new FormData();
+    formData.append("product_name", formValues.product_name);
+    formData.append("product_price", formValues.product_price);
+    formData.append("category", formValues.category);
+
+    if (selectedFile) {
+      formData.append("product_image", selectedFile);
+    } else if (selectedProduct?.image) {
+      formData.append("product_image", selectedProduct.image);
+    }
 
     try {
       const response = await fetch(
@@ -31,11 +60,19 @@ const Page = () => {
         }
       );
 
-      const data = await response.json();
-
-      if (response.ok) {
-        console.log("Updated Product", data);
+      if (!response.ok) {
+        toast.error("Error updating the product");
+        return;
       }
+      const data = await response.json();
+      toast.success("Product successfully updated!");
+      setproducts((prev) =>
+        prev.map((product) =>
+          product.id === id ? data.updatedProduct : product
+        )
+      );
+      router.push("/admin/productList"); 
+      console.log(data?.updatedProduct);
     } catch (error) {
       console.error("Error updating a product", error);
       toast.error("Error updating product");
@@ -53,11 +90,6 @@ const Page = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(udpatedImage);
-    console.log(selectedFile);
-  }, [udpatedImage, selectedFile]);
-
   const buttonText = loading ? "Updating..." : "Update Product";
   return (
     <section className="pt-17 h-screen bg-neutral-bg px-7.5 relative sm:left-66 md:left-70 sm:pt-27 ">
@@ -70,9 +102,9 @@ const Page = () => {
         </button>
         <h3 className="text-[19.02px] mt-7.5">Update Product</h3>
         <ProductForm
-          handleFunc={(e: React.FormEvent<HTMLFormElement>) =>
-            handleUpdateProduct(selectedProduct!.id, e)
-          }
+          formValues={formValues}
+          onChange={handleUpdateOfFields}
+          handleFunc={handleUpdateProduct}
           formRef={updateFormRef}
           previewImage={udpatedImage}
           handleImageChange={handleUpdateImage}
