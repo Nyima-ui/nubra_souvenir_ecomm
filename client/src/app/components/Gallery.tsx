@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Gallery = () => {
   return (
-    <section className="py-7.5 md:py-15">
+    <section className="py-7.5 md:py-15" id="aboutUs">
       <h3
         className="text-center font-century text-[19.02px]
          tracking-[0.01em] md:text-[23.04px]"

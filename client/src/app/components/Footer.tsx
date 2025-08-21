@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer =  () => {
+const Footer = () => {
   return (
     <footer className="text-white bg-primary pt-9 px-7.5 pb-30 md:pb-40 lg:pb-60 relative">
       {/* grid container  */}
       <div className="grid grid-cols-2 gap-x-3 gap-y-15 md:grid-cols-3 lg:grid-cols-4 max-w-[86vw] mx-auto">
         {/* first grid child  */}
         <div className="grid_child">
-          <Image
-            src="/images/newLogo.png"
-            alt="Shop Logo"
-            height={62}
-            width={127}
-          />
+          <Link href="/">
+            <Image
+              src="/images/newLogo.png"
+              alt="Shop Logo"
+              height={62}
+              width={127}
+            />
+          </Link>
         </div>
         {/* second grid child  */}
         <div className="grid_child">
@@ -27,8 +29,13 @@ const Footer =  () => {
                 height={24}
                 width={24}
               />
-              <Link href="/" className="footer_link">
-                Whats App{" "}
+              <Link
+                href="https://wa.me/9419529117"
+                className="footer_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Whats App
               </Link>
             </div>
             <div className="flex items-center gap-2.5">
@@ -38,8 +45,13 @@ const Footer =  () => {
                 height={24}
                 width={24}
               />
-              <Link href="/" className="footer_link">
-                Facebook{" "}
+              <Link
+                href="https://www.facebook.com/nawang.gyatso.5"
+                className="footer_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Facebook
               </Link>
             </div>
             <div className="flex items-center gap-2.5">
@@ -49,7 +61,12 @@ const Footer =  () => {
                 height={24}
                 width={24}
               />
-              <Link href="/" className="footer_link">
+              <Link
+                href="https://www.instagram.com/nawang.gyatso.5?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                className="footer_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Instagram
               </Link>
             </div>
@@ -60,9 +77,13 @@ const Footer =  () => {
                 height={24}
                 width={24}
               />
-              <Link href="/" className="footer_link">
-                {" "}
-                Gmail
+              <Link
+                href="mailto:nawanggyatso450@gmail.com"
+                className="footer_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+          nawanggyatso450@gmail.com
               </Link>
             </div>
           </div>
@@ -72,13 +93,13 @@ const Footer =  () => {
           <h4 className="footer_head">Products</h4>
           <hr className="footer_line" />
           <div className="space-y-3 flex flex-col items-start">
-            <Link href="/" className="footer_link">
+            <Link href="#home-decor" className="footer_link">
               Home Decor
             </Link>
-            <Link href="/" className="footer_link">
+            <Link href="#souvenirs" className="footer_link">
               Gifts
             </Link>
-            <Link href="/" className="footer_link">
+            <Link href="#souvenirs" className="footer_link">
               Most Bought
             </Link>
           </div>

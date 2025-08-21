@@ -14,9 +14,9 @@ const Header = () => {
     // this is mobile header
     <div className="fixed top-0 w-full z-20 border">
       <nav className="flex justify-between items-center px-7.5 py-4 relative bg-neutral-bg sm:hidden">
-        <Link href="/">
+        <Link href="/" className="bg-primary px-1.5 relative -translate-x-2">
           <Image
-            src="/images/logoM.svg"
+            src="/images/newLogo.png"
             alt="Logo. Go to home page."
             width={107}
             height={42}
@@ -80,13 +80,13 @@ const Header = () => {
         {isMenuOpened && (
           <ul className="absolute border top-full right-7.5 bg-[#30221B] text-white pt-10.5 pb-8 px-6 text-xl space-y-5 w-[276px] font-grotesk-500 tracking-[0.01em] border-none">
             <li>
-              <Link href="/">Home Decor</Link>
+              <Link href="#home-decor">Home Decor</Link>
             </li>
             <li>
-              <Link href="/">Souvenirs</Link>
+              <Link href="#souvenirs">Souvenirs</Link>
             </li>
             <li>
-              <Link href="/">About Us</Link>
+              <Link href="#aboutUs">About Us</Link>
             </li>
             <li>
               <Link href="/admin/addProduct">Admin</Link>
@@ -116,9 +116,15 @@ const Header = () => {
                 height={20}
                 style={{ display: "inline" }}
               ></Image>
-              <span className="text-base font-grotesk-400 tracking-[0.02em]">
-                9419529117
-              </span>
+              <Link
+                href="https://wa.me/9419529117"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="text-base font-grotesk-400 tracking-[0.02em]">
+                  9419529117
+                </span>
+              </Link>
             </div>
           </ul>
         )}

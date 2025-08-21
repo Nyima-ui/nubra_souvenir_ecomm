@@ -10,7 +10,7 @@ const DesktopHeader = () => {
   const path = usePathname();
   return (
     <>
-      <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2 z-10">
+      <nav className="max-sm:hidden bg-linear-to-b from-black to-black/55 text-white text-[16.5px] font-grotesk-400 flex items-center justify-between max-w-[1321px] px-5 md:px-10 py-2.5 rounded-[500px] fixed top-5 w-full left-1/2 -translate-x-1/2 z-30">
         <Link href="/">
           <Image
             src="/images/newLogo.png"
@@ -24,7 +24,7 @@ const DesktopHeader = () => {
         <ul className="flex items-center gap-5 md:gap-10">
           <li>
             <Link
-              href="/"
+              href="#home-decor"
               className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
             >
               Home Decor
@@ -32,7 +32,7 @@ const DesktopHeader = () => {
           </li>
           <li>
             <Link
-              href="/"
+              href="#souvenirs"
               className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
             >
               Souvenirs
@@ -40,7 +40,7 @@ const DesktopHeader = () => {
           </li>
           <li>
             <Link
-              href="/"
+              href="#aboutUs"
               className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in"
             >
               About Us
@@ -91,7 +91,7 @@ const DesktopHeader = () => {
             </svg>
           </li>
           <li className="pb-0.5 border-b border-transparent hover:border-white transition-all duration-75 ease-in">
-            <Link href="/">
+            <Link href="https://maps.app.goo.gl/cPN1mo77HicZiDPc7" target="_blank" rel="noopener noreferrer">
               <svg
                 width="28"
                 height="28"

@@ -30,7 +30,7 @@ const FavoriteGrid = () => {
   };
 
   return (
-    <section className="pt-7.5 md:pt-15 pb-7.5 md:pb-15">
+    <section className="pt-7.5 md:pt-15 pb-7.5 md:pb-15" id="souvenirs">
       <h2
         className="font-century text-center text-[19.02px] tracking-[0.01em] 
       sm:text-[23.05px]"
