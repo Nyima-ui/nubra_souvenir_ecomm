@@ -4,10 +4,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { CartProduct } from "../context/CartContext";
-import { productGridDummyData as dummyData } from "../lib/dummyData";
+import { useProductsContext } from "../context/ProductContext";
 
 const ProductGrid = () => {
   const { addToCart, toggleCart } = useCart();
+  const { products } = useProductsContext();
+
+  const productsToRender = products.filter((p) => p.category === "collection");
+
   const handleAddtoCart = (product: CartProduct) => {
     addToCart(product);
     toggleCart();
@@ -29,7 +33,7 @@ const ProductGrid = () => {
 
       {/* grid  */}
       <div className="px-3 font-grotesk-400 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-7.5 md:mt-15 gap-x-3 md:gap-x-5 gap-y-5 md:gap-y-11.5 max-w-[90vw] mx-auto">
-        {dummyData.map((product, index) => (
+        {productsToRender.map((product, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -64,7 +68,7 @@ const ProductGrid = () => {
                       image: product.image,
                       price: product.price,
                       category: product.category,
-                      quantity: product.quantity,
+                      quantity: 1,
                     })
                   }
                 >

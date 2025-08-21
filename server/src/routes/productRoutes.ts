@@ -2,6 +2,7 @@ import express from "express";
 import {
   getAllProducts,
   updateProduct,
+  deleteProduct
 } from "../controllers/productController";
 import upload from "../middlewares/upload";
 
@@ -12,5 +13,6 @@ productRouter.put(
   upload.single("product_image"),
   updateProduct
 );
+productRouter.delete("/deleteProduct/:id", deleteProduct); 
 
 export default productRouter;

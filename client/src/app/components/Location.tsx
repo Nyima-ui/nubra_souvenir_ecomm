@@ -14,10 +14,9 @@ const Location = () => {
       >
         <Image
           src="/images/location-min.png"
-          alt=""
+          alt="Picture of a white Stupa"
           height={639}
           width={711}
-          className="scale-105"
         />
       </motion.div>
       <motion.div

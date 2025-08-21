@@ -48,7 +48,6 @@ const ProductContext = ({ children }: ProductProviderType) => {
 
       const { products } = await response.json();
       setproducts(products);
-      console.log("Fetched products:", products);
     } catch (err) {
       console.error("Fetch error:", err);
       toast.error("Failed to load products.");

@@ -11,8 +11,8 @@ export type CartProduct = {
   productId: string;
   name: string;
   image: string;
-  price: string;
-  category: "collection" | "favorite";
+  price: number;
+  category: string; 
   quantity: number;
 };
 
@@ -42,7 +42,7 @@ const CartContext = ({ children }: CartProdviderProps) => {
   };
 
   const increaseQuantity = (productId: string) => {
-    const updatedCart = cartItems.map((product, i) => {
+    const updatedCart = cartItems.map((product) => {
       if (product.productId === productId) {
         return {
           ...product,
@@ -75,7 +75,7 @@ const CartContext = ({ children }: CartProdviderProps) => {
 
   const findTotal = () => {
     return cartItems.reduce((total, product) => {
-      return total + parseInt(product.price) * product.quantity;
+      return total + product.price * product.quantity;
     }, 0);
   };
 

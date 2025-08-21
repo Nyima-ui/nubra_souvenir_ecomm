@@ -2,17 +2,54 @@
 import { useAdminContext } from "@/app/context/AdminContext";
 import { useProductsContext } from "@/app/context/ProductContext";
 import { useRouter } from "next/navigation";
+import { Product } from "@/app/context/ProductContext";
+import React, { useState } from "react";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
-import React from "react";
-import { Product } from "@/app/context/ProductContext";
+import toast from "react-hot-toast";
+import Loader from "@/app/components/Loader";
 
 const Page = () => {
+  const [productIdtoDelete, setproductIdtoDelete] = useState<string | null>(
+    null
+  );
+  const [loading, setloading] = useState(false);
   const { setisSidebarOpen, isModalOpen, setisModalOpen } = useAdminContext();
-  const { products, setselectedProduct } = useProductsContext();
+  const { products, setproducts, setselectedProduct } = useProductsContext();
   const router = useRouter();
 
-  const handleDeleteProduct = () => {};
+  const handleDeleteProduct = async () => {
+    if (!productIdtoDelete) {
+      toast.error("No product selected for deletion");
+      return;
+    }
+    setloading(true);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/deleteProduct/${productIdtoDelete}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        toast.error("Error deleting product");
+        return;
+      }
+
+      setproducts((prev) =>
+        prev.filter((product) => product.id !== productIdtoDelete)
+      );
+      toast.success("Product successfully deleted!");
+    } catch (error) {
+      console.error("Delete product failed:", error);
+      toast.error("Something went wrong");
+    } finally {
+      setproductIdtoDelete(null);
+      setisModalOpen(false);
+      setloading(false);
+    }
+  };
   const handleUpdate = (product: Product): void => {
     setselectedProduct(product);
     router.push("/admin/updateProduct");
@@ -20,7 +57,7 @@ const Page = () => {
   return (
     <>
       {isModalOpen && (
-        <div className="overlay absolute top-0 left-0 h-screen w-screen bg-black/70 z-20 flex items-center justify-center">
+        <div className="overlay fixed top-0 left-0 h-screen w-screen bg-black/70 z-20 flex items-center justify-center">
           <div className="w-[287px] h-[280px] bg-neutral-bg relative -translate-y-10 flex flex-col items-center py-7.5">
             <Image
               src="/images/pala&cha.png"
@@ -49,7 +86,8 @@ const Page = () => {
           </div>
         </div>
       )}
-      <section className="pt-17 h-auto bg-neutral-bg px-[15px] relative sm:left-66 md:left-70 sm:pt-27 pb-10">
+      {loading ?? <Loader />}
+      <section className="pt-17 min-h-screen bg-neutral-bg px-[15px] relative sm:left-66 md:left-70 sm:pt-27 pb-10">
         <button
           className="sm:hidden cursor-pointer mt-7.5"
           onClick={() => setisSidebarOpen(true)}
@@ -84,6 +122,9 @@ const Page = () => {
               Action
             </p>
           </div>
+          {products.length === 0 && (
+            <p className="text-xl px-2 py-1 text-red-500">No Products</p>
+          )}
 
           {/* grid rows  */}
           {products.map((product) => {
@@ -116,7 +157,10 @@ const Page = () => {
                   </button>
                   <button
                     className="text-[14px] border w-[60px] py-[3px] cursor-pointer"
-                    onClick={() => setisModalOpen(true)}
+                    onClick={() => {
+                      setproductIdtoDelete(product.id);
+                      setisModalOpen(true);
+                    }}
                   >
                     Delete
                   </button>

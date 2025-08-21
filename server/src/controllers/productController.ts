@@ -89,3 +89,33 @@ export const updateProduct = async (req: Request, res: Response) => {
       .json({ success: false, error: "Internal server error" });
   }
 };
+
+export const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json("Product ID is required");
+    }
+
+    const product = await prisma.product.findUnique({ where: { id } });
+
+    if (!product) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
+    }
+
+    const deletedProduct = await prisma.product.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    return res.status(200).json({ success: true, data: deletedProduct });
+  } catch (error) {
+    console.error("Delete Product Error:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal Server Error" });
+  }
+};

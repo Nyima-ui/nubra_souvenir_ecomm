@@ -5,14 +5,14 @@ const Footer =  () => {
   return (
     <footer className="text-white bg-primary pt-9 px-7.5 pb-30 md:pb-40 lg:pb-60 relative">
       {/* grid container  */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-15 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-15 md:grid-cols-3 lg:grid-cols-4 max-w-[86vw] mx-auto">
         {/* first grid child  */}
         <div className="grid_child">
           <Image
-            src="/images/footer_logo.svg"
+            src="/images/newLogo.png"
             alt="Shop Logo"
-            height={42}
-            width={107}
+            height={62}
+            width={127}
           />
         </div>
         {/* second grid child  */}

@@ -1,13 +1,17 @@
 "use client";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { CartProduct } from "../context/CartContext";
 import { useCart } from "../context/CartContext";
-import { favoriteGridDummyData as dummyData } from "../lib/dummyData";
+import { useProductsContext } from "../context/ProductContext";
+import Image from "next/image";
 
 const FavoriteGrid = () => {
   const { addToCart, toggleCart } = useCart();
+  const { products } = useProductsContext();
+
+  const productsToRender = products.filter((p) => p.category === "favorite");
+
   const handleAddtoCart = (product: CartProduct) => {
     addToCart(product);
     toggleCart();
@@ -38,7 +42,7 @@ const FavoriteGrid = () => {
         className="font-grotesk-400 mt-7.5  max-w-[90vw] mx-auto flex overflow-x-scroll gap-2.5 sm:gap-5 hide-scrollbar"
         ref={containerRef}
       >
-        {dummyData.map((product, index) => (
+        {productsToRender.map((product, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
@@ -64,7 +68,7 @@ const FavoriteGrid = () => {
               <div>
                 <span className="sr-only">Add to cart</span>
                 <button
-                aria-label="Add to cart"
+                  aria-label="Add to cart"
                   className="md:opacity-0 transition-opacitiy duration-300 ease-in-out group-hover:opacity-100 cursor-pointer"
                   onClick={() =>
                     handleAddtoCart({
@@ -73,7 +77,7 @@ const FavoriteGrid = () => {
                       image: product.image,
                       price: product.price,
                       category: product.category,
-                      quantity: product.quantity,
+                      quantity: 1,
                     })
                   }
                 >
