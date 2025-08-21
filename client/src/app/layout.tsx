@@ -4,6 +4,15 @@ import CartContext from "./context/CartContext";
 import ProductContext from "./context/ProductContext";
 import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Lora } from "next/font/google";
+
+const lora = Lora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-lora',
+});
 
 export const metadata: Metadata = {
   title: "Nubra Souvenir",
@@ -18,7 +27,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`antialiased`}>
+        <body className={`antialiased ${lora.variable}`}>
           <Toaster position="top-center" reverseOrder={false} />
           <ProductContext>
             <CartContext>{children}</CartContext>

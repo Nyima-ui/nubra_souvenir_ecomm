@@ -18,9 +18,9 @@ function Marquee() {
       >
         {/* Repeat items twice to ensure seamless loop */}
         {[...items, ...items].map((text, i) => (
-          <p key={i} className="w-[250px] max-sm:w-[180px] text-center shrink-0 tracking-[0.1em]">
+          <h6 key={i} className="w-[250px] max-sm:w-[180px] text-center shrink-0 tracking-[0.1em] font-century">
             {text}
-          </p>
+          </h6>
         ))}
       </motion.div>
     </div>
