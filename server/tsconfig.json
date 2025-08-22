@@ -19,8 +19,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true, 
-    "types": ["node"]
+    "exactOptionalPropertyTypes": true,
+    "types": ["node"],
+    "lib": ["ES2022"],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
