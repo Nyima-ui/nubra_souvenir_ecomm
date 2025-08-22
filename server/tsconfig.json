@@ -2,20 +2,22 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "lib": ["ES2020"],
     "types": ["node"],
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "allowImportingTsExtensions": false,
+    "noEmit": false
   },
   "include": ["src/**/*", "src/types.d.ts"],
   "exclude": ["node_modules", "dist"]
