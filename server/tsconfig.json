@@ -13,12 +13,10 @@
     "declaration": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "lib": ["ES2020", "DOM"],
+    "lib": ["ES2020"],
     "types": ["node"],
-    "typeRoots": ["./node_modules/@types"],
-    "allowImportingTsExtensions": false,
-    "noEmit": false
+    "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["src/**/*", "src/types.d.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
