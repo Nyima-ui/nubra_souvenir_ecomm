@@ -12,14 +12,16 @@ const Header = () => {
 
   return (
     // this is mobile header
-    <div className="fixed top-0 w-full z-20 border">
-      <nav className="flex justify-between items-center px-7.5 py-4 relative bg-neutral-bg sm:hidden">
+    <div className="fixed top-0 w-full z-50 border bg-neutral-bg">
+      <nav className="flex justify-between items-center px-7.5 py-4 relative sm:hidden">
         <Link href="/" className="bg-primary px-1.5 relative -translate-x-2">
           <Image
             src="/images/newLogo.png"
             alt="Logo. Go to home page."
             width={107}
             height={42}
+            priority
+            style={{ height: "auto", width: "auto" }}
           ></Image>
         </Link>
         <div className="flex items-center gap-5">
@@ -31,6 +33,7 @@ const Header = () => {
             xmlns="http://www.w3.org/2000/svg"
             onClick={toggleCart}
             className="cart_button"
+            style={{ visibility: "visible", opacity: 1 }}
           >
             <path
               d="M9.71215 7.70833H32.375L29.2917 18.5H11.3724M30.8333 24.6667H12.3333L9.25 4.625H4.625M13.875 30.8333C13.875 31.6848 13.1848 32.375 12.3333 32.375C11.4819 32.375 10.7917 31.6848 10.7917 30.8333C10.7917 29.9819 11.4819 29.2917 12.3333 29.2917C13.1848 29.2917 13.875 29.9819 13.875 30.8333ZM30.8333 30.8333C30.8333 31.6848 30.1431 32.375 29.2917 32.375C28.4402 32.375 27.75 31.6848 27.75 30.8333C27.75 29.9819 28.4402 29.2917 29.2917 29.2917C30.1431 29.2917 30.8333 29.9819 30.8333 30.8333Z"
@@ -47,7 +50,7 @@ const Header = () => {
             viewBox="0 0 37 37"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ display: isMenuOpened ? "block" : "none" }}
+            style={{ display: isMenuOpened ? "block" : "none", visibility: "visible", opacity: 1 }}
             onClick={() => setisMenuOpened((prev) => !prev)}
             className="cross_button"
           >
@@ -66,7 +69,7 @@ const Header = () => {
             viewBox="0 0 37 37"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            style={{ display: isMenuOpened ? "none" : "block" }}
+            style={{ display: isMenuOpened ? "none" : "block", visibility: "visible", opacity: 1 }}
             onClick={() => setisMenuOpened((prev) => !prev)}
             className="bars_button"
           >

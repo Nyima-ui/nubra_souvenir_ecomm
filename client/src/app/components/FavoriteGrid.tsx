@@ -24,7 +24,7 @@ const FavoriteGrid = () => {
 
     const scrollAmount = 390;
     container.scrollBy({
-      left: direction === "left" ? scrollAmount : -scrollAmount,
+      left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",
     });
   };
@@ -109,15 +109,21 @@ const FavoriteGrid = () => {
           height={37}
           width={37}
           className="cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-md"
-          onClick={() => scrollLeft("right")}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollLeft("left");
+          }}
         />
         <Image
           src="/images/arrow_right.svg"
-          alt="Click to scroll left"
+          alt="Click to scroll right"
           height={37}
           width={37}
           className="cursor-pointer transition-transform duration-300 hover:scale-110 hover:drop-shadow-md"
-          onClick={() => scrollLeft("left")}
+          onClick={(e) => {
+            e.preventDefault();
+            scrollLeft("right");
+          }}
         />
       </div>
     </section>

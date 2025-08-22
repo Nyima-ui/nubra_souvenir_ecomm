@@ -17,6 +17,7 @@ const DesktopHeader = () => {
             alt="Logo. Go to home page."
             width={117}
             height={52}
+            style={{ height: "auto" }}
           ></Image>
         </Link>
 

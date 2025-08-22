@@ -96,6 +96,23 @@ h1, h2, h3, h4, h5, h6{
 .hide-scrollbar::-webkit-scrollbar{
   display: none;
 }
+
+/* Ensure header elements remain visible */
+.cart_button,
+.bars_button,
+.cross_button {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Prevent scroll interference with fixed elements */
+.fixed {
+  transform: none !important;
+  will-change: auto !important;
+}
 @layer components{
   .footer_head{
     @apply font-century text-base tracking-[0.01em] font-bold
