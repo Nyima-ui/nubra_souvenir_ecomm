@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc && prisma generate",
