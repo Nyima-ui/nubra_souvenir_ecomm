@@ -1,5 +1,5 @@
-import { prisma } from "../config/prisma";
-import cloudinary from "../config/cloudinary";
+import { prisma } from "../config/prisma.js";
+import cloudinary from "../config/cloudinary.js";
 import fs from "fs";
 export const createProduct = async (req, res) => {
     try {

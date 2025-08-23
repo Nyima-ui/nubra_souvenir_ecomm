@@ -1,6 +1,6 @@
 import express from "express";
-import { getAllProducts, updateProduct, deleteProduct } from "../controllers/productController";
-import upload from "../middlewares/upload";
+import { getAllProducts, updateProduct, deleteProduct } from "../controllers/productController.js";
+import upload from "../middlewares/upload.js";
 const productRouter = express.Router();
 productRouter.get("/getProducts", getAllProducts);
 productRouter.put("/updateProduct/:id", upload.single("product_image"), updateProduct);
