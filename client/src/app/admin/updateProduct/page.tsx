@@ -22,7 +22,7 @@ const Page = () => {
     category: selectedProduct?.category ?? "collection",
   });
 
-  const router = useRouter(); 
+  const router = useRouter();
   //handle update of product values
   const handleUpdateOfFields = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -50,10 +50,10 @@ const Page = () => {
     } else if (selectedProduct?.image) {
       formData.append("product_image", selectedProduct.image);
     }
-
+  
     try {
       const response = await fetch(
-        `http://localhost:5000/api/updateProduct/${id}`,
+        `https://nubra-souvenir-ecomm-13.onrender.com/api/updateProduct/${id}`,
         {
           method: "PUT",
           body: formData,
@@ -71,7 +71,7 @@ const Page = () => {
           product.id === id ? data.updatedProduct : product
         )
       );
-      router.push("/admin/productList"); 
+      router.push("/admin/productList");
       console.log(data?.updatedProduct);
     } catch (error) {
       console.error("Error updating a product", error);

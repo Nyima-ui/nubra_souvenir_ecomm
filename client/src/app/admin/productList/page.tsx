@@ -3,6 +3,7 @@ import { useAdminContext } from "@/app/context/AdminContext";
 import { useProductsContext } from "@/app/context/ProductContext";
 import { useRouter } from "next/navigation";
 import { Product } from "@/app/context/ProductContext";
+import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
@@ -23,10 +24,11 @@ const Page = () => {
       toast.error("No product selected for deletion");
       return;
     }
-    setloading(true);
+
     try {
+      setloading(true);
       const response = await fetch(
-        `http://localhost:5000/api/deleteProduct/${productIdtoDelete}`,
+        `https://nubra-souvenir-ecomm-13.onrender.com/api/deleteProduct/${productIdtoDelete}`,
         {
           method: "DELETE",
         }
@@ -58,7 +60,7 @@ const Page = () => {
     <>
       {isModalOpen && (
         <div className="overlay fixed top-0 left-0 h-screen w-screen bg-black/70 z-20 flex items-center justify-center">
-          <div className="w-[287px] h-[280px] bg-neutral-bg relative -translate-y-10 flex flex-col items-center py-7.5">
+          <div className="w-[287px]  bg-neutral-bg relative -translate-y-10 flex flex-col items-center py-7.5">
             <Image
               src="/images/pala&cha.png"
               alt="Admin picture"
@@ -69,6 +71,7 @@ const Page = () => {
               Are you sure you want to <br />
               delete the product?
             </p>
+            {loading && <Loader2 className="animate-spin mt-4" color="black" size={40} />}
             <div className="space-x-5 mt-8 md:mt-5">
               <button
                 className="border py-1 px-7.5 cursor-pointer"
@@ -86,7 +89,6 @@ const Page = () => {
           </div>
         </div>
       )}
-      {loading ?? <Loader />}
       <section className="pt-17 min-h-screen bg-neutral-bg px-[15px] relative sm:left-66 md:left-70 sm:pt-27 pb-10">
         <button
           className="sm:hidden cursor-pointer mt-7.5"

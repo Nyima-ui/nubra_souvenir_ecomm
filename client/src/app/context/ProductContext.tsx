@@ -40,7 +40,7 @@ const ProductContext = ({ children }: ProductProviderType) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/getProducts");
+      const response = await fetch("https://nubra-souvenir-ecomm-13.onrender.com/api/getProducts");
 
       if (!response.ok) {
         throw new Error(`Error ${response.status} : Failed to fetch products`);

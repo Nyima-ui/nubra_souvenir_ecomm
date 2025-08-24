@@ -58,7 +58,7 @@ const Page = () => {
     formData.append("product_image", selectedFile);
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/addProduct", {
+      const res = await fetch("https://nubra-souvenir-ecomm-13.onrender.com/api/admin/addProduct", {
         method: "POST",
         body: formData,
       });
