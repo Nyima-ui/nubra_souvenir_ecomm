@@ -1,12 +1,15 @@
 # Vercel Deployment Guide
 
-## Issue Fixed
-The original error was caused by Vercel trying to build from the wrong directory. Your project has a monorepo structure with the Next.js app in the `client` subdirectory.
+## Issues Fixed
+1. **Directory Structure Error**: Vercel was trying to build from the wrong directory due to monorepo structure
+2. **Missing Dependencies**: The build was failing due to missing `@prisma/client` and `bcrypt` packages
+3. **Database Access**: Client was trying to access database directly instead of through API calls
 
 ## Solution Applied
-1. **Created root-level `package.json`** - This helps Vercel understand the project structure
-2. **Created `vercel.json`** - This tells Vercel exactly how to build your project
-3. **Updated build command** - Now Vercel will `cd` into the client directory before building
+1. **Fixed monorepo structure** - Configured Vercel to build from the client directory
+2. **Removed problematic dependencies** - Eliminated `@prisma/client` and `bcrypt` from client
+3. **Updated API routes** - Client now forwards requests to server instead of direct database access
+4. **Cleaned up package.json** - Removed unnecessary dependencies that were causing build failures
 
 ## Deployment Steps
 
@@ -36,6 +39,9 @@ You'll need to set these environment variables in Vercel:
 - `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL` (e.g., `/`)
 - `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL` (e.g., `/`)
 - `NEXT_PUBLIC_CLERK_IS_SATELLITE` (set to `false` for main app)
+
+**Server Connection:**
+- `SERVER_URL` (URL of your backend server, e.g., `https://your-server.vercel.app`)
 
 ### 4. Build Settings
 - **Framework Preset:** Next.js
