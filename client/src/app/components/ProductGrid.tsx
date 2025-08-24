@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { CartProduct } from "../context/CartContext";
 import { useProductsContext } from "../context/ProductContext";
+import { Loader2 } from "lucide-react";
 
 const ProductGrid = () => {
   const { addToCart, toggleCart } = useCart();
-  const { products } = useProductsContext();
+  const { products, fetchLoading } = useProductsContext();
 
   const productsToRender = products.filter((p) => p.category === "collection");
 
@@ -30,6 +31,12 @@ const ProductGrid = () => {
       >
         Our Collection
       </motion.h2>
+
+      {fetchLoading && (
+        <div className="w-full flex justify-center">
+          <Loader2 className="animate-spin mt-4" color="black" size={40} />
+        </div>
+      )}
 
       {/* grid  */}
       <div className="px-3 font-grotesk-400 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt-7.5 md:mt-15 gap-x-3 md:gap-x-5 gap-y-5 md:gap-y-11.5 max-w-[90vw] mx-auto">

@@ -24,6 +24,7 @@ type ProductContextsType = {
   fetchProducts: () => Promise<void>;
   selectedProduct: Product | null;
   setselectedProduct: React.Dispatch<React.SetStateAction<Product | null>>;
+  fetchLoading: boolean;
 };
 
 type ProductProviderType = {
@@ -37,10 +38,14 @@ const ProductContexts = createContext<ProductContextsType | undefined>(
 const ProductContext = ({ children }: ProductProviderType) => {
   const [products, setproducts] = useState<Product[]>([]);
   const [selectedProduct, setselectedProduct] = useState<Product | null>(null);
+  const [fetchLoading, setfetchLoading] = useState<boolean>(false);
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://nubra-souvenir-ecomm-13.onrender.com/api/getProducts");
+      setfetchLoading(true);
+      const response = await fetch(
+        "https://nubra-souvenir-ecomm-13.onrender.com/api/getProducts"
+      );
 
       if (!response.ok) {
         throw new Error(`Error ${response.status} : Failed to fetch products`);
@@ -51,6 +56,8 @@ const ProductContext = ({ children }: ProductProviderType) => {
     } catch (err) {
       console.error("Fetch error:", err);
       toast.error("Failed to load products.");
+    } finally {
+      setfetchLoading(false);
     }
   };
   useEffect(() => {
@@ -63,6 +70,7 @@ const ProductContext = ({ children }: ProductProviderType) => {
     fetchProducts,
     selectedProduct,
     setselectedProduct,
+    fetchLoading,
   };
 
   return (
