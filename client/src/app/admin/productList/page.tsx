@@ -8,7 +8,6 @@ import React, { useState } from "react";
 import Bars from "@/app/components/Bars";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import Loader from "@/app/components/Loader";
 
 const Page = () => {
   const [productIdtoDelete, setproductIdtoDelete] = useState<string | null>(

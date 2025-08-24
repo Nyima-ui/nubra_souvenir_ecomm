@@ -32,7 +32,7 @@ const CartProducts = () => {
                   <p className="text-[#3F3F3F]">₹{product.price}</p>
                 </div>
                 <div className="total_div">
-                  ₹{parseInt(product.price) * product.quantity}
+                  ₹{product.price * product.quantity}
                 </div>
               </div>
               <div className="quantity_div lower flex items-center gap-0.5">
