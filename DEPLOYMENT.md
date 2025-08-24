@@ -43,11 +43,21 @@ You'll need to set these environment variables in Vercel:
 - **Output Directory:** `client/.next`
 - **Install Command:** (leave empty, handled in build command)
 
-## Alternative Deployment Method
-If you prefer, you can also deploy directly from the `client` directory:
-1. In Vercel, set the **Root Directory** to `client`
-2. Remove the `vercel.json` file
-3. Deploy normally
+## Alternative Deployment Method (Recommended)
+Since the monorepo approach is causing issues, the easiest solution is to deploy directly from the `client` directory:
+
+1. **In Vercel dashboard:**
+   - Set the **Root Directory** to `client`
+   - Remove the `vercel.json` file (or set Root Directory to `client` in vercel.json)
+   
+2. **Or modify vercel.json:**
+   ```json
+   {
+     "rootDirectory": "client"
+   }
+   ```
+
+3. **Deploy normally** - this will build directly from the client directory
 
 ## Troubleshooting
 - If you still get build errors, check that all environment variables are set
