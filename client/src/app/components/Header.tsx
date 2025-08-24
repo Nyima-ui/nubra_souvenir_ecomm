@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     // this is mobile header
-    <div className="fixed top-0 w-full z-50 border bg-neutral-bg">
+    <div className="fixed top-0 w-screen z-50 border bg-neutral-bg">
       <nav className="flex justify-between items-center px-7.5 py-4 relative sm:hidden">
         <Link href="/" className="bg-primary px-1.5 relative -translate-x-2">
           <Image
